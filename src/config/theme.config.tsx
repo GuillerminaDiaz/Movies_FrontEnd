@@ -9,6 +9,7 @@ export enum themePalette {
   BG = "#0D152B",
   LBLUE = "#32B4FF",
   FONT_GLOBAL = "'JetBrains Mono', monospace",
+  NAVBAR = "#0D152B",
 }
 
 const theme = createTheme({
