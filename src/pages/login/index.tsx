@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -8,24 +8,84 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { log } from "console";
+
+type LoginType = {
+  email: string;
+  password: string;
+};
 
 export const LoginPage: React.FC<{}> = () => {
+  const [login, SetLogin] = useState<LoginType>({
+    email: "",
+    password: "",
+  });
+
+  //const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: any) => {
+    SetLogin({
+      ...login,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  //const handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    console.log(login);
+  };
+
   return (
     <Container maxWidth="sm">
       <Grid
         container
-        direction="row"
+        direction="column"
         alignItems="center"
         justifyContent="center"
         sx={{ minHeight: "100vh" }}
       >
         <Grid item>
-          <Paper sx={{ padding: "1.2em", borderRadius: "0.5em" }}>
-            <Typography variant="h4">Log In</Typography>
-            <Box component="form">
-              <TextField />
-              <TextField />
-              <Button type="submit">Submit</Button>
+          <Paper
+            sx={{
+              padding: "1.2em",
+              borderRadius: "0.5em",
+              backgroundColor: "#0D0F3D",
+            }}
+          >
+            <Typography variant="h4" sx={{ mt: 1, mb: 1 }}>
+              Log In
+            </Typography>
+            <Box component="form" onSubmit={handleSubmit}>
+              <TextField
+                name="email"
+                value={login.email}
+                margin="normal"
+                type="text"
+                fullWidth
+                label="Email"
+                sx={{ mt: 2, mb: 1.5 }}
+                required
+                onChange={handleChange}
+              />
+              <TextField
+                name="password"
+                value={login.password}
+                margin="normal"
+                type="password"
+                fullWidth
+                label="Password"
+                sx={{ mb: 1.5 }}
+                required
+                onChange={handleChange}
+              />
+              <Button
+                fullWidth
+                type="submit"
+                variant="contained"
+                sx={{ mt: 1.5, mb: 2 }}
+              >
+                Log In
+              </Button>
             </Box>
           </Paper>
         </Grid>
