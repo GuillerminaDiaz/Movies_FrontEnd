@@ -49,7 +49,7 @@ export const LoginPage: React.FC<{}> = () => {
             sx={{
               padding: "1.2em",
               borderRadius: "0.5em",
-              backgroundColor: "#0D0F3D",
+              backgroundColor: "rgba(13, 15, 61, 0.2)",
             }}
           >
             <Typography variant="h4" sx={{ mt: 1, mb: 1 }}>

@@ -10,6 +10,9 @@ export enum themePalette {
   LBLUE = "#32B4FF",
   FONT_GLOBAL = "'JetBrains Mono', monospace",
   NAVBAR = "#0D152B",
+  //Alert Styles
+  ERROR_MAIN = "rgb(122, 29, 20)",
+  BG_ERROR_MAIN = "rgba(174, 21, 5, 0.4)",
 }
 
 const theme = createTheme({
@@ -32,6 +35,21 @@ const theme = createTheme({
           textTransform: "none",
           boxShadow: "none",
           borderRadius: "0.5em",
+        },
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        style: {
+          borderRadius: "0.8em",
+          fontSize: "1em",
+        },
+      },
+      //Apuntar a estilos de un tipo de componente
+      styleOverrides: {
+        standardError: {
+          border: `1px solid ${themePalette.ERROR_MAIN}`,
+          background: themePalette.BG_ERROR_MAIN,
         },
       },
     },
