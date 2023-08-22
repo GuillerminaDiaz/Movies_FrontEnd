@@ -8,6 +8,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import React from "react";
 import { themePalette } from "../config/theme.config";
 import { useNavigate } from "react-router-dom";
@@ -30,6 +31,9 @@ export const NavBar: React.FC<{}> = () => {
               </Grid>
               <Grid item>
                 <Stack direction="row" spacing={2}>
+                  <Button>
+                    <AddCircleOutlineIcon fontSize="large" color="primary" />
+                  </Button>
                   <Button
                     variant="contained"
                     onClick={() => navigate("/login")}
