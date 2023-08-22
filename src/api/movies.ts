@@ -5,7 +5,7 @@ export const movies= {
     getAll: ()=>{
         return instance.get(endpoint)
     },
-    getById:(id: string)=>{
+    getById:(id: string | undefined)=>{
         return instance.get(`${endpoint}/${id}`)
     }
 } 
