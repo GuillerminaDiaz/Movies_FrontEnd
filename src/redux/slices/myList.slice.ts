@@ -1,14 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IMovie } from "../../pages/home/interface/movie.interface";
+import { IMovie, IRemoveMovie } from "../../pages/home/interface/movie.interface";
 
-const initialState: IMovie[]= [];
+interface IAddMovie{
+    id: string|number;
+    image: string;
+    overview: string;
+    title: string;
+}
+const initialState: IAddMovie[]= [];
 
 export const myListSlice= createSlice({
     name:'List',
     initialState,
     reducers:{
-        addToList: (state, action: PayloadAction<IMovie>)=>{},
-        removeToList: (state, action: PayloadAction<IMovie>)=>{}
+        addToList: (state, action: PayloadAction<IAddMovie>)=>{
+            const found= state.filter((movie)=> movie.id === action.payload.id)
+            if(state.length===0 || found.length===0){
+                state.push(action.payload)
+            }
+            
+        },
+        removeToList: (state, action: PayloadAction<IRemoveMovie>)=>{}
     }
 })
 

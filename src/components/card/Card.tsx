@@ -7,9 +7,11 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { themePalette } from "../../config/theme.config";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { addToList } from "../../redux/slices/myList.slice";
 
 type CardProps = {
   title: string;
@@ -25,6 +27,30 @@ export const CardComponent: React.FC<CardProps> = ({
   id,
 }) => {
   const navigation = useNavigate();
+
+  const dispatch = useAppDispatch();
+
+  const itemExist = useAppSelector((state) => state.listReducer);
+
+  const [dissabled, setDisabled] = useState<boolean>(false);
+
+  const handlerAddList = () => {
+    dispatch(
+      addToList({
+        id,
+        image,
+        title,
+        overview,
+      })
+    );
+  };
+
+  useEffect(() => {
+    itemExist.some((item) => item.id === id)
+      ? setDisabled(true)
+      : setDisabled(false);
+  }, [itemExist, id]);
+
   return (
     <Card
       sx={{
@@ -64,7 +90,8 @@ export const CardComponent: React.FC<CardProps> = ({
           variant="outlined"
           size="small"
           sx={{ mb: 0, width: "30%" }}
-          //onClick={() => navigation(`/movie/${id}`)}
+          onClick={handlerAddList}
+          disabled={dissabled}
         >
           + My List
         </Button>

@@ -19,3 +19,7 @@ export interface IShortMovie {
     image:        string;
    
 }
+
+export interface IRemoveMovie {
+    id_movie: string|number;
+}

@@ -14,6 +14,8 @@ import { themePalette } from "../config/theme.config";
 import { useNavigate } from "react-router-dom";
 
 export const NavBar: React.FC<{}> = () => {
+  console.log(localStorage);
+
   const navigate = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
